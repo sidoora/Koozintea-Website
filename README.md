@@ -1,50 +1,40 @@
-# Koozintea
+# Algerian Confectionery Business Website (Next.js)
 
-A Next.js site for an Algerian confectionery business, built with the App Router,
-Tailwind, and shadcn-style UI components.
+This is a full-stack website built for a local confectionery business in Algeria. I built it using **Next.js (App Router)**, **Tailwind CSS**, and **shadcn/ui** components to create a clean, responsive user interface.
 
-## What was fixed from the original files
+## What I Fixed & Implemented
 
-- **Contact form now actually submits.** It's a client component that POSTs to
-  `app/api/contact/route.ts`, which validates the fields and returns a real
-  success/error response. The route currently logs submissions to the server
-  console — see the comment in that file for how to wire up a real email
-  provider (Resend is the easiest).
-- **No more placeholder images.** Every image slot checks `lib/site-config.ts`
-  first; if no real photo is set, it shows a styled placeholder instead of a
-  broken `/placeholder.svg` reference.
-- **Footer links work.** "Quick Links" scroll to the matching section on the
-  page. Social icons (Facebook/Instagram/WhatsApp) only render if you've filled
-  in a real URL in `site-config.ts` — no more dead `#` links.
-- **Copyright year is dynamic** — pulls from `new Date().getFullYear()`.
-- **Contact info is centralized** in `lib/site-config.ts` instead of hardcoded
-  across components, so you edit it once.
+*   **Working Contact Form:** The original form didn't actually send data anywhere. I rewrote it as a client component that POSTs to a backend API route (`app/api/contact/route.ts`). The route handles form validation and returns a clean success or error response. Right now, it just logs submissions to the server console—check the comments in that file for steps on connecting an actual email provider like Resend.
+*   **Dynamic Asset Loading:** To prevent broken image links, every image slot checks `lib/site-config.ts` first. If a custom business photo isn't provided yet, it automatically falls back to a styled placeholder instead of throwing a broken `/placeholder.svg` error.
+*   **Functional Navigation & Footer:** "Quick Links" now smoothly scroll to their respective sections on the main page. The social icons (Facebook, Instagram, WhatsApp) only render if you've actually added your URL to the config file, eliminating dead `#` links.
+*   **Dynamic Copyright Year:** Updated the footer copyright to pull automatically from `new Date().getFullYear()` so it never goes out of date.
+*   **Centralized Config:** I moved all the business contact info, social handles, and phone numbers into a single file (`lib/site-config.ts`). This makes it easy to update the website's details in one place without digging through individual layout components.
 
-## Before you deploy
+## Tech Stack
+*   **Frontend:** Next.js (App Router), React, Tailwind CSS, shadcn/ui
+*   **Backend:** Next.js API Routes (Node.js runtime)
+*   **Hosting:** Vercel (Supports the server-side rendering required for the contact form API)
 
-Open `lib/site-config.ts` and fill in:
+## Getting Started
 
-- `phone` — real business phone, or leave blank to hide it
-- `social` — real Facebook/Instagram/WhatsApp links
-- `images.hero` and `images.gallery` — paths to real photos dropped into `public/images/`
+1. Clone the repository and install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Run it locally
+2. Open `lib/site-config.ts` and fill in the configuration details (phone number, social links, and the image paths for your photos inside the `public/images/` folder).
 
-```bash
-npm install
-npm run dev
-```
+3. Run the development server locally:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
 
-Open http://localhost:3000
+## Future Implementations
+*   Connect the contact form API to **Resend** for live email notifications.
+*   Set up a simple database (like PostgreSQL with Prisma) to securely save customer inquiries.
+*   Add basic rate-limiting to the contact API route to prevent spam submissions.
 
-## Build for production
-
-```bash
-npm run build
-npm run start
-```
-
-## Deploying
 
 This is a standard Next.js app, so it deploys cleanly to **Vercel** (built by
 the same team as Next.js — connect the repo and it just works) or any host
