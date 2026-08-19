@@ -22,9 +22,7 @@ This is a full-stack website built for a local confectionery business in Algeria
    npm install
    ```
 
-2. Open `lib/site-config.ts` and fill in the configuration details (phone number, social links, and the image paths for your photos inside the `public/images/` folder).
-
-3. Run the development server locally:
+2. Run the development server locally:
    ```bash
    npm run dev
    ```
