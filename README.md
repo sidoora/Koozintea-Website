@@ -1,43 +1,40 @@
-# Algerian Confectionery Business Website (Next.js)
+# Koozintea
 
-This is a full-stack website built for a local confectionery business in Algeria. I built it using **Next.js (App Router)**, **Tailwind CSS**, and **shadcn/ui** components to create a clean, responsive user interface.
+A website for my mom's confectionery business — she bakes Algerian sweets and pastries out of her home kitchen, and I built her a real site to go with it. Next.js, TypeScript, Tailwind.
 
-## What I Fixed & Implemented
+**Live site:** _(add your deployed URL here once it's live)_
 
-*   **Working Contact Form:** The original form didn't actually send data anywhere. I rewrote it as a client component that POSTs to a backend API route (`app/api/contact/route.ts`). The route handles form validation and returns a clean success or error response. Right now, it just logs submissions to the server console—check the comments in that file for steps on connecting an actual email provider like Resend.
-*   **Dynamic Asset Loading:** To prevent broken image links, every image slot checks `lib/site-config.ts` first. If a custom business photo isn't provided yet, it automatically falls back to a styled placeholder instead of throwing a broken `/placeholder.svg` error.
-*   **Functional Navigation & Footer:** "Quick Links" now smoothly scroll to their respective sections on the main page. The social icons (Facebook, Instagram, WhatsApp) only render if you've actually added your URL to the config file, eliminating dead `#` links.
-*   **Dynamic Copyright Year:** Updated the footer copyright to pull automatically from `new Date().getFullYear()` so it never goes out of date.
-*   **Centralized Config:** I moved all the business contact info, social handles, and phone numbers into a single file (`lib/site-config.ts`). This makes it easy to update the website's details in one place without digging through individual layout components.
+## About the project
 
-## Tech Stack
-*   **Frontend:** Next.js (App Router), React, Tailwind CSS, shadcn/ui
-*   **Backend:** Next.js API Routes (Node.js runtime)
-*   **Hosting:** Vercel (Supports the server-side rendering required for the contact form API)
+The original build was mostly there visually but had a few things that only *looked* done — a contact form with no backend behind it, footer links that went nowhere, placeholder images where real photos should be. I rebuilt those pieces so the site actually works the way it looks like it should.
 
-## Getting Started
+The contact form was the main piece worth doing properly. It's a client component that posts to `app/api/contact/route.ts`, which validates the input server-side and sends back a real success or error response — not just a form that resets itself and hopes for the best. Right now it logs submissions on the server; wiring it to an email provider like Resend is the next step.
 
-1. Clone the repository and install dependencies:
-   ```bash
-   npm install
-   ```
+Everything else — phone number, Instagram, product photos — lives in one config file (`lib/site-config.ts`) instead of being hardcoded across every component, so updating the business info doesn't mean hunting through five files.
 
-2. Open `lib/site-config.ts` and fill in the configuration details (phone number, social links, and the image paths for your photos inside the `public/images/` folder).
+## Stack
 
-3. Run the development server locally:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
+Next.js (App Router) · TypeScript · Tailwind CSS · lucide-react
 
-## Future Implementations
-*   Connect the contact form API to **Resend** for live email notifications.
-*   Set up a simple database (like PostgreSQL with Prisma) to securely save customer inquiries.
-*   Add basic rate-limiting to the contact API route to prevent spam submissions.
+## Running it locally
 
+```bash
+npm install
+npm run dev
+```
 
-This is a standard Next.js app, so it deploys cleanly to **Vercel** (built by
-the same team as Next.js — connect the repo and it just works) or any host
-that supports Node.js server-side rendering. Static hosts like GitHub Pages
-won't work as-is since the contact form's API route needs a server.
-# Koozintea Website
+Then open http://localhost:3000
+
+## Before deploying
+
+Open `lib/site-config.ts` and fill in the real phone number, social links, and image paths (drop photos into `public/images/`).
+
+## Deploying
+
+Deploys straight to Vercel — import the repo, no config needed. A static host like GitHub Pages won't work here since the contact form's API route needs an actual server to run.
+
+## What's next
+
+- Hook the contact route up to Resend so inquiries actually land in an inbox
+- Add a small database (Postgres + Prisma) to store submissions instead of just logging them
+- Basic rate-limiting on the API route so it can't be spammed
