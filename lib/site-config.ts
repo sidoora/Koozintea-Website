@@ -4,7 +4,7 @@
 
 export const siteConfig = {
   name: "Koozintea",
-  tagline: "Artisanal Algerian Confections",
+  tagline: "Artisanal Luxury Confections",
 
   phone: "(479) 652-9892",
   email: "hello@koozintea.com",
