@@ -2,7 +2,7 @@
 
 A website for my mom's confectionery business — she bakes Algerian sweets and pastries out of her home kitchen, and I built her a real site to go with it. Next.js, TypeScript, Tailwind.
 
-**Live site:** _(add your deployed URL here once it's live)_
+**Live site:** http://localhost:3000
 
 ## About the project
 
